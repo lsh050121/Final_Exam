@@ -15,6 +15,9 @@ public class MainFrame extends JFrame{
         //메인프레임
         JFrame mainFrame = createFrame();
 
+        // 타이틀
+        JLabel title = createLabel();
+
         // 스터디그룹리스트
         JPanel studyListPanel = creatStudyListPanel();
 
@@ -31,6 +34,16 @@ public class MainFrame extends JFrame{
         mainFrame.setResizable(false);
         mainFrame.setVisible(true);
         return mainFrame;
+    }
+
+    private JLabel createLabel() {
+        JLabel title = new JLabel("CJU StudyGroup List");
+        title.setFont(new Font("Arial", Font.BOLD, 20));
+        title.setForeground(Color.DARK_GRAY);
+        title.setHorizontalAlignment(JLabel.CENTER);
+        title.setBounds(135, 10, 220, 70);
+        mainFrame.add(title);
+        return title;
     }
 
     private JPanel creatStudyListPanel() {
