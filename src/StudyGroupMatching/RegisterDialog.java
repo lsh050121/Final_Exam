@@ -11,12 +11,13 @@ import java.io.IOException;
  * @author Lee SangHyeok    (lsh050121@naver.com)
  *
  * @created 2024-12-23
- * @lastModified 2024-12-23
+ * @lastModified 2024-12-24
  *
  * @changelog
  * <ul>
  *     <li>2024-12-23 : 최초 생성</li>
  *     <li>2024-12-23 : 등록 버튼 액션리스너 추가</li>
+ *     <li>2024-12-24 : 인원 수 오류메세지 추가</li>
  * </ul>
  *
  */
@@ -73,6 +74,13 @@ public class RegisterDialog extends JFrame{
                 String day = (String) dayComboBox.getSelectedItem();
                 int currentMembers = (int) currentMembersComboBox.getSelectedItem();
                 int totalMembers = (int) totalMembersComboBox.getSelectedItem();
+
+                if(currentMembers >= totalMembers) {
+                    JOptionPane.showMessageDialog(registrationDialog,"현 인원이 최대 인원보다 크거나 같을 수 없습니다. 다시 입력해주세요.",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+
+                    return;
+                }
 
                 String newStudyGroup = String.format("%s / ( %s ) / %d / %d명", subject, day, currentMembers, totalMembers);
 
