@@ -25,7 +25,7 @@ import java.io.IOException;
 public class MainFrame extends JFrame {
     private JFrame mainFrame;
     private JLabel title;
-    private JButton registerButton;
+    private JButton registerButton, searchButton;
     private static JPanel studyListPanel;
 
 
@@ -41,6 +41,9 @@ public class MainFrame extends JFrame {
 
         // 등록버튼
         JButton registerButton = createRegisterButton();
+
+        // 검색 버튼
+        JButton searchButton = createSearchButton();
     }
 
     /**
@@ -170,5 +173,21 @@ public class MainFrame extends JFrame {
             }
         });
         return registerButton;
+    }
+
+    private JButton createSearchButton() {
+        searchButton = new JButton("검색");
+        searchButton.setBounds(310, 350, 100, 30); // 등록 버튼 옆에 위치
+        mainFrame.add(searchButton);
+
+        searchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SearchDialog.openSearchDialog(mainFrame, studyListPanel);
+            }
+        });
+
+        return searchButton;
+
     }
 }
