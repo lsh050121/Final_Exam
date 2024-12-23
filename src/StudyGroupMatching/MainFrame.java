@@ -2,9 +2,10 @@ package StudyGroupMatching;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 
-public class MainFrame extends JFrame{
+public class MainFrame extends JFrame {
     private JFrame mainFrame;
     private JLabel title;
     private JButton registerButton;
@@ -19,7 +20,7 @@ public class MainFrame extends JFrame{
         JLabel title = createLabel();
 
         // 스터디그룹리스트
-        JPanel studyListPanel = creatStudyListPanel();
+        JPanel studyListPanel = createStudyListPanel();
 
         // 등록버튼
         JButton registerButton = createRegisterButton();
@@ -46,25 +47,19 @@ public class MainFrame extends JFrame{
         return title;
     }
 
-    private JPanel creatStudyListPanel() {
+    private JPanel createStudyListPanel() {
         studyListPanel = new JPanel();
         studyListPanel.setLayout(new BoxLayout(studyListPanel, BoxLayout.Y_AXIS));
         JScrollPane listScrollPane = new JScrollPane(studyListPanel);
         listScrollPane.setBounds(50, 80, 400, 250);
 
-        JPanel listPanel = new JPanel();
-        listPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-        listPanel.setMaximumSize(new Dimension(400, 40));
-
-        JLabel info = new JLabel ("자바프로그래밍 / ( 월요일 ) /  1 / 3명 ");
-        info.setPreferredSize(new Dimension(250, 30));
-        listPanel.add(info);
-
-        JButton joinButton = new JButton("참가");
-        joinButton.setPreferredSize(new Dimension(80, 30));
-        listPanel.add(joinButton);
-
-        studyListPanel.add(listPanel);
+        // 파일에서 읽어와 리스트 추가
+        try {
+            ReadFile.populateStudyList("src/StudyGroupMatching/StudyGroup_List.txt", studyListPanel);
+        } catch (IOException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(mainFrame, "파일을 읽는 중 오류가 발생했습니다.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
 
         mainFrame.add(listScrollPane);
         return studyListPanel;
