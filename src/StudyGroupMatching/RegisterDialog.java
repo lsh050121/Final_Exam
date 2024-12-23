@@ -20,6 +20,7 @@ import java.io.IOException;
  *     <li>2024-12-23 : 등록 버튼 액션리스너 추가</li>
  *     <li>2024-12-24 : 인원 수 오류메세지 추가</li>
  *     <li>2024-12-24 : 오류메시지 발생시 효과음 발생 메소드 추가</li>
+ *     <li>2024-12-24 : 주제 유효성 검사 추가</li>
  * </ul>
  *
  */
@@ -37,6 +38,7 @@ public class RegisterDialog extends JFrame{
      *     <li>2024-12-23 : 최초생성</li>
      *     <li>2024-12-23 : 등록 버튼 액션리스너 추가</li>
      *     <li>2024-12-24 : 인원 수 오류메세지 추가</li>
+     *     <li>2024-12-24 : 주제 유효성 검사 추가</li>
      * </ul>
      * @param parent JFrame 객체인 호출한 창, 부모창입니다.
      */
@@ -93,6 +95,14 @@ public class RegisterDialog extends JFrame{
                 int currentMembers = (int) currentMembersComboBox.getSelectedItem();
                 int totalMembers = (int) totalMembersComboBox.getSelectedItem();
 
+                // 주제 비어있는지 검사
+                if (subject.isEmpty()) {
+                    playErrorSound();
+                    JOptionPane.showMessageDialog(registrationDialog, "주제를 입력해주세요.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                // 현재인원이 총 인원보다 크지 않게 검사
                 if(currentMembers >= totalMembers) {
                     playErrorSound();
                     JOptionPane.showMessageDialog(registrationDialog,"현 인원이 최대 인원보다 크거나 같을 수 없습니다. 다시 입력해주세요.",
