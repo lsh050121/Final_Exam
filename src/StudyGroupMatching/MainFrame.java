@@ -2,6 +2,8 @@ package StudyGroupMatching;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 
 /**
@@ -129,18 +131,26 @@ public class MainFrame extends JFrame {
      * @author Lee SangHyeok    (lsh050121@naver.com)
      *
      * @created 2024-12-20
+     * @lastModified 2024-12-23
      *
      * @return 등록버튼을 반환합니다
      *
      * @changelog
      * <ul>
      *     <li>2024-12-20 : 최초생성</li>
+     *     <li>2024-12-23 : 등록 버튼 클릭 시 등록 창 추가</li>
      * </ul>
      */
     private JButton createRegisterButton() {
         registerButton = new JButton("등록");
         registerButton.setBounds(200, 350, 100, 30);
         mainFrame.add(registerButton);
+
+        registerButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                RegisterDialog.openRegistrationDialog(mainFrame);
+            }
+        });
         return registerButton;
     }
 }
