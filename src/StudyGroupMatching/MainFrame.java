@@ -4,7 +4,21 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
-
+/**
+ * CJU 스터디그룹 매칭 시스템 메인프레임 클래스입니다.
+ *
+ * @author Lee SangHyeok    (lsh050121@naver.com)
+ *
+ * @created 2024-12-20
+ * @lastModified 2024-12-22
+ *
+ * @changelog
+ * <ul>
+ *     <li>2024-12-20 : 최초 생성</li>
+ *     <li>2024-12-20 : 등록버튼 생성</li>
+ *     <li>2024-12-22 : ReadFile 클래스 생성</li>
+ * </ul>
+ */
 public class MainFrame extends JFrame {
     private JFrame mainFrame;
     private JLabel title;
@@ -26,6 +40,20 @@ public class MainFrame extends JFrame {
         JButton registerButton = createRegisterButton();
     }
 
+    /**
+     * 메인프레임을 생성하는 메소드입니다.
+     *
+     * @author Lee SangHyeok    (lsh050121@naver.com)
+     *
+     * @return 메인프레임을 반환합니다.
+     *
+     * @created 2024-12-20
+     *
+     * @changelog
+     * <ul>
+     *     <li>2024-12-20 : 최초생성</li>
+     * </ul>
+     */
     private JFrame createFrame() {
         mainFrame = new JFrame("CJU StudyGroup");
         mainFrame.setSize(500, 450);
@@ -37,6 +65,20 @@ public class MainFrame extends JFrame {
         return mainFrame;
     }
 
+    /**
+     * 상단 제목을 보여주는 레이블 생성 메소드입니다.
+     *
+     * @author Lee SangHyeok    (lsh050121@naver.com)
+     *
+     * @created 2024-12-20
+     *
+     * @return 제목 레이블을 반환합니다
+     *
+     * @changelog
+     * <ul>
+     *     <li>2024-12-20 : 최초생성</li>
+     * </ul>
+     */
     private JLabel createLabel() {
         JLabel title = new JLabel("CJU StudyGroup List");
         title.setFont(new Font("Arial", Font.BOLD, 20));
@@ -47,6 +89,22 @@ public class MainFrame extends JFrame {
         return title;
     }
 
+    /**
+     * 스터디그룹 리스트 목록을 보여주는 패널 생성 메소드입니다.
+     *
+     * @author Lee SangHyeok    (lsh050121@naver.com)
+     *
+     * @created 2024-12-20
+     * @lastModified 2024-12-22
+     *
+     * @return 스터디그룹리스트 패널을 반환합니다
+     *
+     * @changelog
+     * <ul>
+     *     <li>2024-12-20 : 최초생성</li>
+     *     <li>2024-12-22 : ReadFile 클래스 사용</li>
+     * </ul>
+     */
     private JPanel createStudyListPanel() {
         studyListPanel = new JPanel();
         studyListPanel.setLayout(new BoxLayout(studyListPanel, BoxLayout.Y_AXIS));
@@ -65,6 +123,20 @@ public class MainFrame extends JFrame {
         return studyListPanel;
     }
 
+    /**
+     * 등록버튼을 생성하는 메소드입니다.
+     *
+     * @author Lee SangHyeok    (lsh050121@naver.com)
+     *
+     * @created 2024-12-20
+     *
+     * @return 등록버튼을 반환합니다
+     *
+     * @changelog
+     * <ul>
+     *     <li>2024-12-20 : 최초생성</li>
+     * </ul>
+     */
     private JButton createRegisterButton() {
         registerButton = new JButton("등록");
         registerButton.setBounds(200, 350, 100, 30);

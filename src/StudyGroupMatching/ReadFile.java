@@ -9,6 +9,18 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * 파일을 읽어오는 클래스입니다.
+ *
+ * @author Lee SangHyeok    (lsh050121@naver.com)
+ *
+ * @created 2024-12-22
+ *
+ * @changelog
+ * <ul>
+ *     <li>2024-12-22 : 최초생성</li>
+ * </ul>
+ */
 public class ReadFile {
     public static void populateStudyList(String filePath, JPanel studyListPanel) throws IOException {
         java.nio.file.Path path = java.nio.file.Paths.get(filePath);
