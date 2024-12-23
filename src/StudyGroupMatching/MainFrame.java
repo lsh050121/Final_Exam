@@ -12,20 +12,21 @@ import java.io.IOException;
  * @author Lee SangHyeok    (lsh050121@naver.com)
  *
  * @created 2024-12-20
- * @lastModified 2024-12-22
+ * @lastModified 2024-12-23
  *
  * @changelog
  * <ul>
  *     <li>2024-12-20 : 최초 생성</li>
  *     <li>2024-12-20 : 등록버튼 생성</li>
  *     <li>2024-12-22 : ReadFile 클래스 생성</li>
+ *     <li>2024-12-23 : getStudyListPanel 메소드 생성</li>
  * </ul>
  */
 public class MainFrame extends JFrame {
     private JFrame mainFrame;
     private JLabel title;
     private JButton registerButton;
-    private JPanel studyListPanel;
+    private static JPanel studyListPanel;
 
 
     public MainFrame() {
@@ -122,6 +123,23 @@ public class MainFrame extends JFrame {
         }
 
         mainFrame.add(listScrollPane);
+        return studyListPanel;
+    }
+
+    /**
+     * studyListPanel에 접근할수 있는 메소드입니다.
+     *
+     * @author Lee SangHyeok    (lsh050121@naver.com)
+     *
+     * @created 2024-12-23
+     *
+     * @changelog
+     * <ul>
+     *     <li>2024-12-23 : 최초생성</li>
+     * </ul>
+     * @return studyListPanel 을 반환합니다.
+     */
+    public static JPanel getStudyListPanel() {
         return studyListPanel;
     }
 

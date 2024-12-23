@@ -2,6 +2,8 @@ package StudyGroupMatching;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -19,6 +21,7 @@ import javax.swing.JPanel;
  * @changelog
  * <ul>
  *     <li>2024-12-22 : 최초생성</li>
+ *     <li>2024-12-23 : writeToFile 메소드 생성</li>
  * </ul>
  */
 public class ReadFile {
@@ -31,7 +34,14 @@ public class ReadFile {
         }
     }
 
-    private static void addStudyGroup(String infoText, JPanel studyListPanel) {
+    public static void writeToFile(String filePath, String content) throws IOException {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))){
+            writer.write(content);
+            writer.newLine();
+        }
+    }
+
+    public static void addStudyGroup(String infoText, JPanel studyListPanel) {
         JPanel listPanel = new JPanel();
         listPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
         listPanel.setMaximumSize(new Dimension(400, 40));

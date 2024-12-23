@@ -1,11 +1,9 @@
 package StudyGroupMatching;
 
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
 
 /**
  * 메인 프레임의 등록 버튼 클릭 시 실행되는 창을 생성하는 클래스입니다.
@@ -13,10 +11,12 @@ import javax.swing.JTextField;
  * @author Lee SangHyeok    (lsh050121@naver.com)
  *
  * @created 2024-12-23
+ * @lastModified 2024-12-23
  *
  * @changelog
  * <ul>
  *     <li>2024-12-23 : 최초 생성</li>
+ *     <li>2024-12-23 : 등록 버튼 액션리스너 추가</li>
  * </ul>
  *
  */
@@ -64,6 +64,29 @@ public class RegisterDialog extends JFrame{
         JButton addButton = new JButton("등록");
         addButton.setBounds(100, 200, 100, 30);
         registrationDialog.add(addButton);
+
+        //등록 버튼 액션
+        addButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String subject = subjectField.getText();
+                String day = (String) dayComboBox.getSelectedItem();
+                int currentMembers = (int) currentMembersComboBox.getSelectedItem();
+                int totalMembers = (int) totalMembersComboBox.getSelectedItem();
+
+                String newStudyGroup = String.format("%s / ( %s ) / %d / %d명", subject, day, currentMembers, totalMembers);
+
+                try {
+                    ReadFile.writeToFile("src/StudyGroupMatching/StudyGroup_List.txt", newStudyGroup);
+                    ReadFile.addStudyGroup(newStudyGroup, MainFrame.getStudyListPanel());
+                } catch (IOException ex){
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(registrationDialog, "파일 저장 중 오류가 발생했습니다.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+                registrationDialog.dispose();
+            }
+        });
 
         registrationDialog.setLocationRelativeTo(null);
         registrationDialog.setResizable(false);
