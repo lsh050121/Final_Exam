@@ -1,5 +1,6 @@
 package StudyGroupMatching;
 
+import java.awt.Toolkit;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,10 +19,27 @@ import java.io.IOException;
  *     <li>2024-12-23 : 최초 생성</li>
  *     <li>2024-12-23 : 등록 버튼 액션리스너 추가</li>
  *     <li>2024-12-24 : 인원 수 오류메세지 추가</li>
+ *     <li>2024-12-24 : 오류메시지 발생시 효과음 발생 메소드 추가</li>
  * </ul>
  *
  */
 public class RegisterDialog extends JFrame{
+    /**
+     * 등록 화면을 생성하는 메소드입니다.
+     *
+     * @author Lee SangHyeok    (lsh050121@naver.com)
+     *
+     * @created 2024-12-23
+     * @lastModified 2024-12-24
+     *
+     * @changelog
+     * <ul>
+     *     <li>2024-12-23 : 최초생성</li>
+     *     <li>2024-12-23 : 등록 버튼 액션리스너 추가</li>
+     *     <li>2024-12-24 : 인원 수 오류메세지 추가</li>
+     * </ul>
+     * @param parent JFrame 객체인 호출한 창, 부모창입니다.
+     */
     public static void openRegistrationDialog(JFrame parent) {
         JDialog registrationDialog = new JDialog(parent, "스터디 등록", true);
         registrationDialog.setSize(300, 300);
@@ -76,6 +94,7 @@ public class RegisterDialog extends JFrame{
                 int totalMembers = (int) totalMembersComboBox.getSelectedItem();
 
                 if(currentMembers >= totalMembers) {
+                    playErrorSound();
                     JOptionPane.showMessageDialog(registrationDialog,"현 인원이 최대 인원보다 크거나 같을 수 없습니다. 다시 입력해주세요.",
                             "Error", JOptionPane.ERROR_MESSAGE);
 
@@ -101,5 +120,21 @@ public class RegisterDialog extends JFrame{
         registrationDialog.setVisible(true);
 
 
+    }
+
+    /**
+     * 오류메세지 발생시 효과금을 생성하는 메소드입니다
+     *
+     * @author Lee SangHyeok    (lsh050121@naver.com)
+     *
+     * @created 2024-12-24
+     *
+     * @changelog
+     * <ul>
+     *     <li>2024-12-24 : 최초생성</li>
+     * </ul>
+     */
+    private static void playErrorSound() {
+        Toolkit.getDefaultToolkit().beep();
     }
 }
