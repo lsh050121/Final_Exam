@@ -25,7 +25,7 @@ import java.io.IOException;
 public class MainFrame extends JFrame {
     private JFrame mainFrame;
     private JLabel title;
-    private JButton registerButton, searchButton;
+    private JButton registerButton, searchButton, resetButton;
     private static JPanel studyListPanel;
 
 
@@ -44,6 +44,9 @@ public class MainFrame extends JFrame {
 
         // 검색 버튼
         JButton searchButton = createSearchButton();
+
+        // 검색 초기화 버튼
+        JButton reseJButton = createResetButton();
     }
 
     /**
@@ -164,7 +167,7 @@ public class MainFrame extends JFrame {
      */
     private JButton createRegisterButton() {
         registerButton = new JButton("등록");
-        registerButton.setBounds(200, 350, 100, 30);
+        registerButton.setBounds(150, 350, 100, 30);
         mainFrame.add(registerButton);
 
         registerButton.addActionListener(new ActionListener() {
@@ -177,7 +180,7 @@ public class MainFrame extends JFrame {
 
     private JButton createSearchButton() {
         searchButton = new JButton("검색");
-        searchButton.setBounds(310, 350, 100, 30); // 등록 버튼 옆에 위치
+        searchButton.setBounds(260, 350, 100, 30); // 등록 버튼 옆에 위치
         mainFrame.add(searchButton);
 
         searchButton.addActionListener(new ActionListener() {
@@ -189,5 +192,30 @@ public class MainFrame extends JFrame {
 
         return searchButton;
 
+    }
+
+    private JButton createResetButton() {
+        JButton resetButton = new JButton("검색 초기화");
+        resetButton.setBounds(370, 350, 100, 30); // 검색 버튼 옆에 위치
+        mainFrame.add(resetButton);
+
+        resetButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                // studyListPanel 초기화 후 전체 리스트 다시 로드
+                studyListPanel.removeAll();
+                try {
+                    ReadFile.populateStudyList("src/StudyGroupMatching/StudyGroup_List.txt", studyListPanel);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(mainFrame, "리스트를 초기화하는 중 오류가 발생했습니다.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                studyListPanel.revalidate();
+                studyListPanel.repaint();
+            }
+        });
+
+        return resetButton;
     }
 }
