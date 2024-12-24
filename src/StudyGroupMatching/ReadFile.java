@@ -72,27 +72,35 @@ public class ReadFile {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // 학번 입력 받기
-                String studentNumber = JOptionPane.showInputDialog(null, "학번을 입력하세요:", "참가", JOptionPane.PLAIN_MESSAGE);
+                String studentNumber = JOptionPane.showInputDialog(null, "학번을 입력하세요:");
 
-                if (studentNumber != null && !studentNumber.trim().isEmpty()) {
-                    boolean success = ReadFile.joinStudyGroup(infoText, studentNumber, studyListPanel);
-                    if (success) {
-                        JOptionPane.showMessageDialog(null, "참가가 완료되었습니다!", "참가 성공", JOptionPane.INFORMATION_MESSAGE);
-
-                        // studyListPanel 업데이트
-                        studyListPanel.removeAll();
-                        try {
-                            ReadFile.populateStudyList("src/StudyGroupMatching/StudyGroup_List.txt", studyListPanel);
-                        } catch (IOException ex) {
-                            ex.printStackTrace();
-                        }
-                        studyListPanel.revalidate();
-                        studyListPanel.repaint();
-                    } else {
-                        JOptionPane.showMessageDialog(null, "이미 참가한 학번이거나 최대 인원에 도달하여 참가할 수 없습니다.", "참가 실패", JOptionPane.WARNING_MESSAGE);
-                    }
-                } else {
+                // 입력값이 비어 있거나 숫자가 아닌 경우 처리
+                if (studentNumber == null || studentNumber.trim().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "학번을 입력하지 않았습니다.", "참가 실패", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+
+                if (!studentNumber.matches("\\d+")) { // 숫자가 아닌 경우
+                    JOptionPane.showMessageDialog(null, "학번은 숫자만 입력할 수 있습니다.", "입력 오류", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                // 참가 처리 로직
+                boolean success = ReadFile.joinStudyGroup(infoText, studentNumber, studyListPanel);
+                if (success) {
+                    JOptionPane.showMessageDialog(null, "참가가 완료되었습니다!", "참가 성공", JOptionPane.INFORMATION_MESSAGE);
+
+                    // studyListPanel 업데이트
+                    studyListPanel.removeAll();
+                    try {
+                        ReadFile.populateStudyList("src/StudyGroup_List.txt/StudyGroup_List.txt", studyListPanel);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                    studyListPanel.revalidate();
+                    studyListPanel.repaint();
+                } else {
+                    JOptionPane.showMessageDialog(null, "이미 참가한 학번이거나 최대 인원에 도달하여 참가할 수 없습니다.", "참가 실패", JOptionPane.WARNING_MESSAGE);
                 }
             }
         });
