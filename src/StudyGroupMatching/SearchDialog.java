@@ -57,12 +57,19 @@ public class SearchDialog extends JFrame{
                 String selectedDay = (String) dayComboBox.getSelectedItem();
                 List<String> filteredGroups = filterStudyGroupsByDay(selectedDay);
 
-                studyListPanel.removeAll();
-                for (String group: filteredGroups) {
-                    ReadFile.addStudyGroup(group, studyListPanel);
+                if (filteredGroups.isEmpty()) {
+                    JOptionPane.showMessageDialog(searchDialog, "해당 요일에 스터디가 없습니다.", "검색 결과 없음", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    // MainFrame의 studyListPanel 업데이트
+                    studyListPanel.removeAll();
+                    for (String group : filteredGroups) {
+                        ReadFile.addStudyGroup(group, studyListPanel);
+                    }
+                    studyListPanel.revalidate();
+                    studyListPanel.repaint();
                 }
-                studyListPanel.revalidate();
-                studyListPanel.repaint();
+
+                // 검색 창 닫기
                 searchDialog.dispose();
             }
         });
