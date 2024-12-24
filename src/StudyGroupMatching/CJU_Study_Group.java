@@ -7,11 +7,14 @@ import javax.swing.*;
  *
  * @author Lee SangHyeok    (lsh050121@naver.com)
  *
+ * @version v1.0
+ *
  * @created 2024-12-20
  *
  * @changelog
  * <ul>
  *     <li>2024-12-20 : 최초 생성</li>
+ *     <li>2024-12-25 : version v1.0 완성</li>
  * </ul>
  */
 public class CJU_Study_Group extends JFrame {
