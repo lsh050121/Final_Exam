@@ -7,7 +7,8 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 /**
- * CJU 스터디그룹 매칭 시스템 메인프레임 클래스입니다.
+ * CJU 스터디그룹 매칭 시스템의 메인 UI 클래스입니다.
+ * 스터디 그룹 목록을 보여주고, 등록, 검색, 및 초기화 버튼을 제공합니다.
  *
  * @author Lee SangHyeok    (lsh050121@naver.com)
  *
@@ -51,6 +52,8 @@ public class MainFrame extends JFrame {
 
     /**
      * 메인프레임을 생성하는 메소드입니다.
+     * 크기, 종료 동작, 레이아웃, 위치, 크기 조정 가능 여부 등을 설정합니다.
+     * 프레임을 화면 중앙에 배치하고 표시합니다.
      *
      * @author Lee SangHyeok    (lsh050121@naver.com)
      *
@@ -81,7 +84,7 @@ public class MainFrame extends JFrame {
      *
      * @created 2024-12-20
      *
-     * @return 제목 레이블을 반환합니다
+     * @return 생성된 JLabel 객체를 반환합니다.
      *
      * @changelog
      * <ul>
@@ -100,13 +103,14 @@ public class MainFrame extends JFrame {
 
     /**
      * 스터디그룹 리스트 목록을 보여주는 패널 생성 메소드입니다.
+     * 지정된 파일에서 스터디 그룹 데이터를 읽어와 리스트에 추가합니다.
      *
      * @author Lee SangHyeok    (lsh050121@naver.com)
      *
      * @created 2024-12-20
      * @lastModified 2024-12-22
      *
-     * @return 스터디그룹리스트 패널을 반환합니다
+     * @return 생성된 JPanel 객체 , 스터디그룹리스트 패널을 반환합니다
      *
      * @changelog
      * <ul>
@@ -134,6 +138,7 @@ public class MainFrame extends JFrame {
 
     /**
      * studyListPanel에 접근할수 있는 메소드입니다.
+     * 현재 존재하는 스터디 그룹 리스트 패널을 반환합니다
      *
      * @author Lee SangHyeok    (lsh050121@naver.com)
      *
@@ -143,7 +148,7 @@ public class MainFrame extends JFrame {
      * <ul>
      *     <li>2024-12-23 : 최초생성</li>
      * </ul>
-     * @return studyListPanel 을 반환합니다.
+     * @return 현재 스터디 그룹 리스트를 포함하고 있는 JPanel 객체를 반환합니다.
      */
     public static JPanel getStudyListPanel() {
         return studyListPanel;
@@ -151,6 +156,7 @@ public class MainFrame extends JFrame {
 
     /**
      * 등록버튼을 생성하는 메소드입니다.
+     * 버튼을 클릭 했을 때 등록 다이얼로그가 열리도록 액션 리스너를 추가합니다.
      *
      * @author Lee SangHyeok    (lsh050121@naver.com)
      *
@@ -178,6 +184,21 @@ public class MainFrame extends JFrame {
         return registerButton;
     }
 
+    /**
+     * 검색 버튼을 생성하는 메소드입니다.
+     * 버튼 클릭 시 검색 창이 열리도록 액션 리스너를 추가합니다.
+     *
+     * @author Lee SangHyeok    (lsh050121@naver.com)
+     *
+     * @return 생성된 JButton 객체 == 검색 버튼을 반환합니다
+     *
+     * @created 2024-12-24
+     *
+     * @changelog
+     * <ul>
+     *     <li>2024-12-24 : 최초생성</li>
+     * </ul>
+     */
     private JButton createSearchButton() {
         searchButton = new JButton("검색");
         searchButton.setBounds(260, 350, 100, 30);
@@ -194,6 +215,21 @@ public class MainFrame extends JFrame {
 
     }
 
+    /**
+     * 검색 초기화 버튼을 생성하는 메소드입니다.
+     * 버튼 클릭시 스터티 그룹 리스트를 초기화하고 파일에서 다시 데이터를 읽어오는 작업을 수행합니다.
+     *
+     * @author Lee SangHyeok    (lsh050121@naver.com)
+     *
+     * @created 2024-12-24
+     *
+     * @changelog
+     * <ul>
+     *     <li>2024-12-24 : 최초 생성</li>
+     * </ul>
+     *
+     * @return 생성된 JButton 객체 == 검색 초기화 버튼을 반환합니다.
+     */
     private JButton createResetButton() {
         JButton resetButton = new JButton("검색 초기화");
         resetButton.setBounds(370, 350, 100, 30);
