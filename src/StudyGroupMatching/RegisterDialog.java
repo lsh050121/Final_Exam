@@ -27,6 +27,9 @@ import java.io.IOException;
 public class RegisterDialog extends JFrame{
     /**
      * 등록 화면을 생성하는 메소드입니다.
+     * 사용자가 스터디 그룹을 등록할 수 있는 다이얼로그를 생성하고,
+     * 주제, 요일, 현재인원, 최대 입력을 입력받아 추가합니다.
+     * 등록 버튼을 클릭하면 입력값을 검증한 후, 파일에 저장하고 리스트를 갱신합니다.
      *
      * @author Lee SangHyeok    (lsh050121@naver.com)
      *
@@ -40,7 +43,7 @@ public class RegisterDialog extends JFrame{
      *     <li>2024-12-24 : 인원 수 오류메세지 추가</li>
      *     <li>2024-12-24 : 주제 유효성 검사 추가</li>
      * </ul>
-     * @param parent JFrame 객체인 호출한 창, 부모창입니다.
+     * @param parent 부모 JFrame 객체. 다이얼로그는 이 부모 JFrame 위에 표시됩니다.
      */
     public static void openRegistrationDialog(JFrame parent) {
         JDialog registrationDialog = new JDialog(parent, "스터디 등록", true);
@@ -133,7 +136,7 @@ public class RegisterDialog extends JFrame{
     }
 
     /**
-     * 오류메세지 발생시 효과금을 생성하는 메소드입니다
+     * 오류메세지 발생시 효과음을 생성하는 메소드입니다
      *
      * @author Lee SangHyeok    (lsh050121@naver.com)
      *
