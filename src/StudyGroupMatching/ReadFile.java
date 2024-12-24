@@ -28,9 +28,27 @@ import javax.swing.*;
  * <ul>
  *     <li>2024-12-22 : 최초생성</li>
  *     <li>2024-12-23 : writeToFile 메소드 생성</li>
+ *     <li>2024-12-24 : populateStudyList 메소드 수정</li>
  * </ul>
  */
 public class ReadFile {
+    /**
+     * 주어진 파일에서 스터디 그룹 정보를 읽어와 `studyListPanel`에 표시하는 메소드입니다.
+     *
+     * @author Lee SangHyeok    (lsh050121@naver.com)
+     *
+     * @created 2024-12-22
+     * @lastModified 2024-12-24
+     *
+     * @changelog
+     * <ul>
+     *     <li>2024-12-22 : 최초생성</li>
+     *     <li>2024-12-24 : 학번을 제외한 정보만 표시되게 변경</li>
+     * </ul>
+     * @param filePath 스터디 그룹 정보가 저장된 파일의 경로
+     * @param studyListPanel 스터디 그룹 목록을 표시하는 JPanel 객체
+     * @throws IOException 파일 읽기 중 발생할 수 있는 입출력 오류
+     */
     public static void populateStudyList(String filePath, JPanel studyListPanel) throws IOException {
         java.nio.file.Path path = java.nio.file.Paths.get(filePath);
         List<String> studyGroups = java.nio.file.Files.readAllLines(path);
@@ -44,6 +62,22 @@ public class ReadFile {
         }
     }
 
+    /**
+     * 주어진 파일에 내용을 추가하는 메소드입니다.
+     *
+     * @author Lee SangHyeok    (lsh050121@naver.com)
+     *
+     * @created 2024-12-23
+     *
+     * @changelog
+     * <ul>
+     *     <li>2024-12-23 : 최초생성</li>
+     * </ul>
+     *
+     * @param filePath 파일의 경로입니다.
+     * @param content 파일에 추가할 내용입니다.
+     * @throws IOException 파일 쓰기 중 발생할 수 있는 입출력 오류
+     */
     public static void writeToFile(String filePath, String content) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))){
             writer.write(content);
@@ -51,6 +85,24 @@ public class ReadFile {
         }
     }
 
+    /**
+     * 스터디 그룹 정보를 'studyListPanel'에 추가하여 화면에 표시해주는 메소드입니다.
+     *
+     * @author Lee SangHyeok    (lsh050121@naver.com)
+     *
+     * @created 2024-12-23
+     * @lastModified 2024-12-25
+     *
+     * @changelog
+     * <ul>
+     *     <li>2024-12-23 : 최초생성</li>
+     *     <li>2024-12-24 : 학번을 제외한 정보만 표시되게 변경</li>
+     *     <li>2024-12-25 : 학번 입력시 숫자만 입력받을 수 있게 변경</li>
+     * </ul>
+     *
+     * @param infoText 스터디 그룹에 대한 정보 문자열입니다.
+     * @param studyListPanel 스터디 그룹 목록을 표시할 JPanel 객체입니다.
+     */
     public static void addStudyGroup(String infoText, JPanel studyListPanel) {
         JPanel listPanel = new JPanel();
         listPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -110,6 +162,25 @@ public class ReadFile {
         studyListPanel.repaint();
     }
 
+    /**
+     * 사용자가 입력한 학번을 바탕으로 스터디 그룹에 참가를 처리하는 메소드입니다.
+     *
+     * @author Lee SangHyeok    (lsh050121@naver.com)
+     *
+     * @created 2024-12-24
+     * @lastModified 2024-12-24
+     *
+     * @changelog
+     * <ul>
+     *     <li>2024-12-24 : 최초생성</li>
+     *     <li>2024-12-24 : 학번 입력 및 중복 방지 구현</li></>
+     * </ul>
+     *
+     * @param groupInfo
+     * @param studentNumber
+     * @param studyListPanel
+     * @return
+     */
     public static boolean joinStudyGroup(String groupInfo, String studentNumber, JPanel studyListPanel) {
         Path filePath = Paths.get("src/StudyGroupMatching/StudyGroup_List.txt");
 
