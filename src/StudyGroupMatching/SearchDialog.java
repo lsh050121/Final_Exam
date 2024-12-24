@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
  *     <li>2024-12-24 : 최초생성</li>
  * </ul>
  */
-public class SearchDialog {
+public class SearchDialog extends JFrame{
     /**
      * 검색창을 생성하는 메소드입니다.
      *

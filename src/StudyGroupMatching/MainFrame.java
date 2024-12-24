@@ -180,7 +180,7 @@ public class MainFrame extends JFrame {
 
     private JButton createSearchButton() {
         searchButton = new JButton("검색");
-        searchButton.setBounds(260, 350, 100, 30); // 등록 버튼 옆에 위치
+        searchButton.setBounds(260, 350, 100, 30);
         mainFrame.add(searchButton);
 
         searchButton.addActionListener(new ActionListener() {
@@ -196,7 +196,7 @@ public class MainFrame extends JFrame {
 
     private JButton createResetButton() {
         JButton resetButton = new JButton("검색 초기화");
-        resetButton.setBounds(370, 350, 100, 30); // 검색 버튼 옆에 위치
+        resetButton.setBounds(370, 350, 100, 30);
         mainFrame.add(resetButton);
 
         resetButton.addActionListener(new ActionListener() {
