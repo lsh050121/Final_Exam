@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static StudyGroupMatching.ReadFile.FILE_PATH;
+
 /**
  * 메인 프레임의 검색 버튼 클릭시 시 실행되는 창을 생성하는 클래스입니다.
  *
@@ -95,7 +97,7 @@ public class SearchDialog extends JFrame{
      */
     private static List<String> filterStudyGroupsByDay(String day) {
         try {
-            List<String> allGroups = java.nio.file.Files.readAllLines(java.nio.file.Paths.get("src/StudyGroupMatching/StudyGroup_List.txt"));
+            List<String> allGroups = java.nio.file.Files.readAllLines(java.nio.file.Paths.get(FILE_PATH));
             return allGroups.stream()
                     .filter(group -> group.contains("( " + day + " )")) // 요일로 필터링
                     .collect(Collectors.toList());

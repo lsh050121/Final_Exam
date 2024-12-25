@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+import static StudyGroupMatching.ReadFile.FILE_PATH;
+
 /**
  * 메인 프레임의 등록 버튼 클릭 시 실행되는 창을 생성하는 클래스입니다.
  *
@@ -117,7 +119,7 @@ public class RegisterDialog extends JFrame{
                 String newStudyGroup = String.format("%s / ( %s ) / %d / %d명", subject, day, currentMembers, totalMembers);
 
                 try {
-                    ReadFile.writeToFile("src/StudyGroupMatching/StudyGroup_List.txt", newStudyGroup);
+                    ReadFile.writeToFile(FILE_PATH, newStudyGroup);
                     ReadFile.addStudyGroup(newStudyGroup, MainFrame.getStudyListPanel());
                 } catch (IOException ex){
                     ex.printStackTrace();

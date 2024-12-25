@@ -49,6 +49,8 @@ public class ReadFile {
      * @param studyListPanel 스터디 그룹 목록을 표시하는 JPanel 객체
      * @throws IOException 파일 읽기 중 발생할 수 있는 입출력 오류
      */
+    static final String FILE_PATH = "src/StudyGroupMatching/StudyGroup_List.txt";
+
     public static void populateStudyList(String filePath, JPanel studyListPanel) throws IOException {
         java.nio.file.Path path = java.nio.file.Paths.get(filePath);
         List<String> studyGroups = java.nio.file.Files.readAllLines(path);
@@ -145,7 +147,7 @@ public class ReadFile {
                     // studyListPanel 업데이트
                     studyListPanel.removeAll();
                     try {
-                        ReadFile.populateStudyList("src/StudyGroupMatching/StudyGroup_List.txt", studyListPanel);
+                        ReadFile.populateStudyList(FILE_PATH, studyListPanel);
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
@@ -182,7 +184,7 @@ public class ReadFile {
      * @return
      */
     public static boolean joinStudyGroup(String groupInfo, String studentNumber, JPanel studyListPanel) {
-        Path filePath = Paths.get("src/StudyGroupMatching/StudyGroup_List.txt");
+        Path filePath = Paths.get(FILE_PATH);
 
         try {
             List<String> allGroups = Files.readAllLines(filePath);

@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+import static StudyGroupMatching.ReadFile.FILE_PATH;
+
 /**
  * CJU 스터디그룹 매칭 시스템의 메인 UI 클래스입니다.
  * 스터디 그룹 목록을 보여주고, 등록, 검색, 및 초기화 버튼을 제공합니다.
@@ -126,7 +128,7 @@ public class MainFrame extends JFrame {
 
         // 파일에서 읽어와 리스트 추가
         try {
-            ReadFile.populateStudyList("src/StudyGroupMatching/StudyGroup_List.txt", studyListPanel);
+            ReadFile.populateStudyList(FILE_PATH, studyListPanel);
         } catch (IOException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(mainFrame, "파일을 읽는 중 오류가 발생했습니다.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -242,7 +244,7 @@ public class MainFrame extends JFrame {
                 // studyListPanel 초기화 후 전체 리스트 다시 로드
                 studyListPanel.removeAll();
                 try {
-                    ReadFile.populateStudyList("src/StudyGroupMatching/StudyGroup_List.txt", studyListPanel);
+                    ReadFile.populateStudyList(FILE_PATH, studyListPanel);
                 } catch (IOException ex) {
                     ex.printStackTrace();
                     JOptionPane.showMessageDialog(mainFrame, "리스트를 초기화하는 중 오류가 발생했습니다.", "Error", JOptionPane.ERROR_MESSAGE);
