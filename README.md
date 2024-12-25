@@ -76,7 +76,52 @@ graph TD
 ```
 
 ### 2. 클래스 다이어그램
+```mermaid
+classDiagram
+    class CJU_Study_Group {
+        +main(String[] args)
+    }
 
+    class MainFrame {
+        -JFrame mainFrame
+        -JLabel title
+        -JButton registerButton
+        -JButton searchButton
+        -JButton resetButton
+        -JPanel studyListPanel
+        +MainFrame()
+        +createFrame() : JFrame
+        +createLabel() : JLabel
+        +createStudyListPanel() : JPanel
+        +createRegisterButton() : JButton
+        +createSearchButton() : JButton
+        +createResetButton() : JButton
+    }
+
+    class RegisterDialog {
+        +openRegistrationDialog(JFrame parent)
+        -playErrorSound()
+    }
+
+    class SearchDialog {
+        +openSearchDialog(JFrame parent, JPanel studyListPanel)
+        -filterStudyGroupsByDay(String day) : List<String>
+    }
+
+    class ReadFile {
+        +populateStudyList(String filePath, JPanel studyListPanel) : void
+        +writeToFile(String filePath, String content) : void
+        +addStudyGroup(String infoText, JPanel studyListPanel) : void
+        +joinStudyGroup(String groupInfo, String studentNumber, JPanel studyListPanel) : boolean
+    }
+
+    CJU_Study_Group --> MainFrame : Creates
+    MainFrame --> RegisterDialog : Opens
+    MainFrame --> SearchDialog : Opens
+    MainFrame --> ReadFile : Uses
+    RegisterDialog --> ReadFile : Uses
+    SearchDialog --> ReadFile : Uses
+```
 ### 3. 절차 설명
 
 ---
