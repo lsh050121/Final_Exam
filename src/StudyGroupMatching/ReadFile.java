@@ -124,7 +124,7 @@ public class ReadFile {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // 학번 입력 받기
-                String studentNumber = JOptionPane.showInputDialog(null, "학번을 입력하세요:");
+                String studentNumber = JOptionPane.showInputDialog(null, "학번을 입력하세요:", "참가", JOptionPane.PLAIN_MESSAGE);
 
                 // 입력값이 비어 있거나 숫자가 아닌 경우 처리
                 if (studentNumber == null || studentNumber.trim().isEmpty()) {
@@ -145,7 +145,7 @@ public class ReadFile {
                     // studyListPanel 업데이트
                     studyListPanel.removeAll();
                     try {
-                        ReadFile.populateStudyList("src/StudyGroup_List.txt/StudyGroup_List.txt", studyListPanel);
+                        ReadFile.populateStudyList("src/StudyGroupMatching/StudyGroup_List.txt", studyListPanel);
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
