@@ -178,11 +178,11 @@ classDiagram
 
 |           | 이미지                                |
 |-----------|------------------------------------|
-| 메인프레임     | ![메인 화면](src/images/main.PNG)      |
-| 등록 창 및 결과 | ![등록 화면](src/images/register.PNG)  |
-| 검색 화면     | ![검색 화면](src/images/search.PNG)    |
-| 검색 초기화    | ![검색 초기화 화면](src/images/reset.PNG) |
-| 참가 화면     | ![참가 화면](src/images/join.PNG)      |
+| 메인프레임     | ![메인 화면](src/images/main.png)      |
+| 등록 창 및 결과 | ![등록 화면](src/images/register.png)  |
+| 검색 화면     | ![검색 화면](src/images/search.png)    |
+| 검색 초기화    | ![검색 초기화 화면](src/images/reset.png) |
+| 참가 화면     | ![참가 화면](src/images/join.png)      |
 
 ---
 
